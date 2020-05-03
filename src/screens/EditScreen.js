@@ -17,10 +17,10 @@ const EditScreen = ({ navigation }) => {
 
     return (
         <NoteForm 
-            initialValues={{ title: Nota.title, content: Nota.content }}
-            onSubmit={(title, content) => {
+            initialValues={{ content: Nota.content }}
+            onSubmit={(content) => {
                 // console.log(title, content);
-                 editNote(id, title, content,  () => navigation.pop() );   
+                 editNote(id, content, () => navigation.pop() );   
                  // ultimo param é a funcao callback de voltar pag. do NotepadContext /\
             }} 
         />

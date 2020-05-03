@@ -8,18 +8,6 @@ import styled from 'styled-components/native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const StyledNoteTitle = styled.Text`
-    font-family: 'SFPro';
-    color: #565656; 
-    line-height: 30px;
-    text-align: justify;
-    font-size: 19px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 0 20px;
-`;
-
 const StyledTextContent = styled.Text`
     font-family: 'SFPro';
     color: #565656;  
@@ -79,7 +67,7 @@ const ShowScreen = ({ navigation }) => {
                             {/* <Text style={styles.noteTitle}> { Nota.title } </Text>  */}
                             {/* <Text style={styles.noteContent}> { Nota.content}   </Text> */}
 
-                            <StyledNoteTitle> { Nota.title } </StyledNoteTitle>
+                            {/* <StyledNoteTitle> { Nota.title } </StyledNoteTitle> */}
                             <StyledTextContent> { Nota.content} </StyledTextContent>
                                                         
                         </View>

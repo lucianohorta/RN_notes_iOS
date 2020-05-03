@@ -6,7 +6,7 @@ const noteReducer = (state, action) => {
             return [...state, { 
                 id: Math.floor(Math.random() * 99999), 
                 // title: `Nota numero #${state.length + 1}` 
-                title: action.payload.title,
+                // title: action.payload.title,
                 content: action.payload.content
             }];
         case 'delete_note':
@@ -21,9 +21,9 @@ const noteReducer = (state, action) => {
 };
 
 const addNote = dispatch => {
-    return (title, content, callback) => {
+    return (content, callback) => {
         // dispatch({ type: 'add_note', payload: { title: title, content: content }});
-        dispatch({ type: 'add_note', payload: { title, content }});  // abreviacao de cima /\
+        dispatch({ type: 'add_note', payload: { content }});  // abreviacao de cima /\
         callback();   // funcao pra ir pro index do CreateScreen
     };
     // dispatch = setNote (ou qq action)
@@ -36,10 +36,10 @@ const deleteNote = dispatch => {
 }
 
 const editNote = dispatch => {
-    return (id, title, content, callback) => {
+    return (id, content, callback) => {
         dispatch({ 
             type: 'edit_note', 
-            payload: { id: id, title: title, content: content }   //podia ser: id, title, content
+            payload: { id: id, content: content }   //podia ser: id, title, content
         });
         callback();   // funcao pra voltar tela(pop) do EditScreen
     };
@@ -48,6 +48,6 @@ const editNote = dispatch => {
 export const { Context, Provider } = createDataContext(
     noteReducer, 
     {addNote, deleteNote, editNote}, 
-    [{ title: 'Teste Nota', content: 'Teste Conteudo', id: 1 }]  // nota teste
+    [{ content: 'Bem vindo ao iNotes', id: 1 }]  // nota teste
     // []
 );

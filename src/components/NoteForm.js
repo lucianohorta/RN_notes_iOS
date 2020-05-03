@@ -8,18 +8,6 @@ import { withNavigation } from 'react-navigation';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const StyledNoteTitle = styled.Text`
-    font-family: 'SFPro';
-    color: #565656; 
-    line-height: 30px;
-    text-align: justify;
-    font-size: 19px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 0 20px;
-`;
-
 const StyledTextContent = styled.Text`
     font-family: 'SFPro';
     color: #565656;  
@@ -35,7 +23,7 @@ const StyledTextContent = styled.Text`
 
 const NoteForm = ({ onSubmit, initialValues, navigation }) => {
 
-    const [title, setTitle] = useState(initialValues.title);
+    // const [title, setTitle] = useState(initialValues.title);
     const [content, setContent] = useState(initialValues.content);
 
     return (
@@ -57,7 +45,7 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
                     right={
                         <TouchableOpacity style={{marginTop: 10}} onPress={() =>   
                             // navigation.navigate('Edit', {id: navigation.getParam('id') })
-                            onSubmit(title, content)
+                            onSubmit(content)
                         }>
                             <Text style={styles.editButton}>OK</Text>
                         </TouchableOpacity>
@@ -73,9 +61,9 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
                     {/* <ImageBackground style={styles.headerBgImg} resizeMode="repeat" source={require('./../img/background.jpg')}> */}
                         <View style={{marginTop: 15, height: height, width: width}}>
 
-							<TextInput style={styles.input} value={title} 
+							{/* <TextInput style={styles.input} value={title} 
                                 onChangeText={(text) => setTitle(text)} 
-                            />
+                            /> */}
 
                             <TextInput numberOfLines={25} style={styles.input} value={content} multiline={true}
                                 onChangeText={(text) => setContent(text)} />
@@ -93,7 +81,7 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
 
 NoteForm.defaultProps = {  // used to fill in default values
     initialValues: {
-        title: '',
+        // title: '',
         content: '',
     }
 };
