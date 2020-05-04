@@ -45,7 +45,8 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
                     right={
                         <TouchableOpacity style={{marginTop: 10}} onPress={() =>   
                             // navigation.navigate('Edit', {id: navigation.getParam('id') })
-                            onSubmit(content)
+                            { content  ?  onSubmit(content)  :  navigation.goBack()  }    // only saves(submit note) if there's some content!!! 
+                            
                         }>
                             <Text style={styles.editButton}>OK</Text>
                         </TouchableOpacity>

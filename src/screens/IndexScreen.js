@@ -25,10 +25,6 @@ const IndexScreen = ({ navigation }) => {
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
 
-  const zeronotes = "<Text> Sem notas </Text>";
-  const onenote = "<Text>{state.length} Nota </Text>";
-  const morethanone = "<Text>{state.length} Notas </Text>";
-
   return (
     <View style={{flex: 1, flexWrap: 'wrap', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', alignContent: 'flex-start', height: height}}>
 
