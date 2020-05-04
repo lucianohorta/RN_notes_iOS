@@ -25,6 +25,10 @@ const IndexScreen = ({ navigation }) => {
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
 
+  const zeronotes = "<Text> Sem notas </Text>";
+  const onenote = "<Text>{state.length} Nota </Text>";
+  const morethanone = "<Text>{state.length} Notas </Text>";
+
   return (
     <View style={{flex: 1, flexWrap: 'wrap', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', alignContent: 'flex-start', height: height}}>
 
@@ -86,7 +90,13 @@ const IndexScreen = ({ navigation }) => {
             <Footer
                 image
                 left={<View style={{marginLeft: 33,}}></View>}
-                center={<Text style={styles.footerCount}> Notas</Text>} 
+                center={<Text style={styles.footerCount}> 
+                    {  state.length >= 1 ?   
+                       state.length == 1 ?   <Text>{state.length} Nota </Text>   :   <Text>{state.length} Notas </Text>  
+                    : 
+                    <Text> Sem notas </Text>   }
+
+                </Text>} 
                 right={
                   <View style={{justifyContent: 'center', marginRight: 15, paddingTop: 10 }}>
                       <TouchableOpacity onPress = {() => navigation.navigate('Create')}>
