@@ -1,5 +1,8 @@
 import createDataContext from './createDataContext';  
 
+const date = new Date();
+const datecreated = date.toLocaleDateString('pt-BR');
+
 const noteReducer = (state, action) => {
     switch (action.type) {
         case 'add_note':
@@ -7,7 +10,8 @@ const noteReducer = (state, action) => {
                 id: Math.floor(Math.random() * 99999), 
                 // title: `Nota numero #${state.length + 1}` 
                 // title: action.payload.title,
-                content: action.payload.content
+                content: action.payload.content,
+                datecreated: action.payload.datecreated
             }];
         case 'delete_note':
             return state.filter((setNote) => setNote.id !== action.payload);
@@ -21,9 +25,11 @@ const noteReducer = (state, action) => {
 };
 
 const addNote = dispatch => {
-    return (content, callback) => {
+    return (content, datecreated, callback) => {
         // dispatch({ type: 'add_note', payload: { title: title, content: content }});
-        dispatch({ type: 'add_note', payload: { content }});  // abreviacao de cima /\
+        dispatch({ 
+            type: 'add_note', 
+            payload: { content: content, datecreated: datecreated }});  // abreviacao de cima /\
         callback();   // funcao pra ir pro index do CreateScreen
     };
     // dispatch = setNote (ou qq action)
@@ -39,7 +45,7 @@ const editNote = dispatch => {
     return (id, content, callback) => {
         dispatch({ 
             type: 'edit_note', 
-            payload: { id: id, content: content }   //podia ser: id, title, content
+            payload: { id: id, content: content, datecreated: datecreated }   //podia ser: id, title, content
         });
         callback();   // funcao pra voltar tela(pop) do EditScreen
     };
@@ -48,6 +54,10 @@ const editNote = dispatch => {
 export const { Context, Provider } = createDataContext(
     noteReducer, 
     {addNote, deleteNote, editNote}, 
-    [{ content: 'Bem vindo ao iNotes', id: 1 }]  // nota teste
+    [{ 
+        content: 'Bem vindo ao iNotes!!!', 
+        id: 1, 
+        datecreated: '01/01/2020'  
+    }]  // nota teste
     // []
 );

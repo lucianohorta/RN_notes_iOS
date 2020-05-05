@@ -4,13 +4,12 @@ import { Context } from '../context/NotepadContext';
 import NoteForm from '../components/NoteForm';
 
 
-
 const CreateScreen = ({ navigation }) => {
     const { addNote } = useContext(Context);
 
     return <NoteForm 
-        onSubmit={(content) => {
-            addNote(content, () => navigation.navigate('Index') )
+        onSubmit={(datecreated, content) => {
+            addNote(datecreated, content, () => navigation.navigate('Index') )
                                     // ultimo param é a funcao callback do NotepadContext /\
         }} />;
 };

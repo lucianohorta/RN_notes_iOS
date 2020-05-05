@@ -25,6 +25,7 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
 
     // const [title, setTitle] = useState(initialValues.title);
     const [content, setContent] = useState(initialValues.content);
+    const [datecreated, setdateCreated] = useState(initialValues.datecreated);
 
     return (
         <View style={{flex: 1}}>
@@ -45,7 +46,7 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
                     right={
                         <TouchableOpacity style={{marginTop: 10}} onPress={() =>   
                             // navigation.navigate('Edit', {id: navigation.getParam('id') })
-                            { content  ?  onSubmit(content)  :  navigation.goBack()  }    // only saves(submit note) if there's some content!!! 
+                            { content  ?  onSubmit(content, datecreated)  :  navigation.navigate('Index')  }    // only saves(submit note) if there's some content!!! 
                             
                         }>
                             <Text style={styles.editButton}>OK</Text>
@@ -67,7 +68,7 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
                             /> */}
 
                             <TextInput numberOfLines={25} style={styles.input} value={content} multiline={true}
-                                onChangeText={(text) => setContent(text)} />
+                                onChangeText={ (text) => setContent(text) } />
 
                                                         
                         </View>
@@ -79,11 +80,35 @@ const NoteForm = ({ onSubmit, initialValues, navigation }) => {
         </View>
     );
 };
+Date.prototype.getWeekDay = function() {
+    // var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var weekday = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+    return weekday[this.getDay()];
+}
+
+function formatedDate(){
+    var data = new Date(),
+        day  = data.getDate().toString().padStart(2, '0'),
+        month  = (data.getMonth()+1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
+        year  = data.getFullYear();
+        time = data.getHours() + ":" + data.getMinutes();
+
+    if (  (data.getWeekDay() > data.getWeekDay())  &&  (data.getWeekDay() < 7)   ) {  // se for na semana corrente printa o dia da semana
+        return data.getWeekDay()
+    }
+    if (day == day) {   // se for hoje printa HORARIO
+        return time;
+    } else {       // senao for hoje: dd/mm/yyyy
+        return day+"/"+month+"/"+year;
+    }  
+}
+
 
 NoteForm.defaultProps = {  // used to fill in default values
     initialValues: {
         // title: '',
         content: '',
+        datecreated: formatedDate(),
     }
 };
 
