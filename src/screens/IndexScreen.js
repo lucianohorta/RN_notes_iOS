@@ -81,7 +81,11 @@ const IndexScreen = ({ navigation }) => {
                       style={styles.backRightBtnRight}
                       onPress={() => deleteNote(item.id)}
                   >
-                      <Text style={styles.backTextWhite}>Deletar</Text>
+                      {/* <Text style={styles.backTextWhite}>Deletar</Text> */}
+                      <Text style={styles.backTextWhite}>
+                        <Image source={require('./../img/trash.png')}  style={styles.trash}  />
+                      </Text>
+                      
                   </TouchableOpacity>
                 </View>
               )}
@@ -185,9 +189,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color:"#b7b5b5"
   },
-  backTextWhite: {
+  backTextWhite: {    // delete button
     color: '#FFF',
     fontFamily: 'SFPro', 
+    flex: 1,
+    paddingTop: 12
+  },
+  trash: {     // trash icon
+    height: 25,
+    width: 25,
   },
   rowBack: {
       alignItems: 'center',
@@ -209,7 +219,7 @@ const styles = StyleSheet.create({
   headerBgImg: {
     flex: 1,
     resizeMode: 'repeat',
-  }
+  },
 });
 
 export default IndexScreen;
