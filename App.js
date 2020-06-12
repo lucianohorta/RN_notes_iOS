@@ -10,14 +10,24 @@ import EditScreen from './src/screens/EditScreen';
 import NoteForm from './src/components/NoteForm';
 import Header from '../notesiphone/src/components/Header';
 import { Ionicons } from '@expo/vector-icons';
-
 import { AppLoading } from 'expo';
 import { useFonts } from '@use-expo/font';
 
+import { XStorage } from 'react-native-easy-app';
+import { AsyncStorage } from 'react-native';
 
+const stacknavigator = createStackNavigator({
 
-const stacknavigator = createStackNavigator(
-  {
+    async Storage(){
+      const RNStorage = { customerId: undefined }
+      XStorage.init(RNStorage,AsyncStorage, ()=>{
+        RNStorage.customerId='123456XXX'; // equivalent to AsyncStorage.setItem('customerId')
+        console.log(RNStorage.customerId); // equivalent to AsyncStorage.getItem('customerId')
+      })
+    },
+    componentDidMount(){
+      this.Storage();
+    },
     Index: IndexScreen,
     Show: ShowScreen,
     Create: CreateScreen,
@@ -35,7 +45,9 @@ const stacknavigator = createStackNavigator(
 // export default createAppContainer(stacknavigator);
 const App = createAppContainer(stacknavigator);
 
+
 export default (props) => {
+  
   let [fontsLoaded] = useFonts({
     // 'Inter-Black': 'https://rsms.me/inter/font-files/Inter-Black.otf?v=3.12',
     'SFLight': require('./assets/fonts/SFLight.ttf'),

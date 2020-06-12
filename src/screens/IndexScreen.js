@@ -193,11 +193,12 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontFamily: 'SFPro', 
     flex: 1,
-    paddingTop: 12
+    paddingTop: 10
   },
   trash: {     // trash icon
-    height: 25,
-    width: 25,
+    height: 27,
+    width: 27,
+    // transform([{scaleX: '45deg'}
   },
   rowBack: {
       alignItems: 'center',
