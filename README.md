@@ -1,4 +1,4 @@
-# notes-iphone-react-native-app
-Notes iPhone (React Native App)
+# iOS Notes app for Android
+PS: Portuguese language
 
 ![](preview.gif)
